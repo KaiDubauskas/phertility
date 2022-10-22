@@ -77,17 +77,12 @@ function Map(){
               lat={data.geometry.location.lat}
               lng={data.geometry.location.lng}
               >
-              <div class="marker-image"> 
-              <div class="details">
-                  <div class="container"> 
-                    <div class="block">
-                      <p class="loc-name"> {data.name} </p>
-                      <p class="loc-add"> {data.formatted_address}</p>
-                      </div> 
-                  </div>
-                </div>             
-                <img height="40px" src={markerImage}/>
-               
+              <div class="marker-image">              
+                <img class="marker-image" height="40px" src={markerImage}/>
+                <div class="details">
+                  {data.name}
+                  {data.formatted_address}
+                </div>
                 </div>
           </div>
     );
