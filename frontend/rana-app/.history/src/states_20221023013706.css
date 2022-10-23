@@ -1,0 +1,31 @@
+.countries{
+    display: grid;
+    grid-template-columns: 370px 370px 370px;
+    column-gap: 10px;
+    line-height: 50%;
+  }
+
+.cardBody{
+  height: 300px;
+  align-items: center;
+}
+.form input{
+    padding: 15px;
+    font-size: 25px;
+    color: black;
+  }
+
+  .cardText{
+    margin: 30px;
+    font-size: 20px;
+  }
+
+  .cardTitle{
+    margin: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .cardImg{
+    opacity: 0.5;
+  }

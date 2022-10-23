@@ -1,0 +1,60 @@
+ *{
+    background-color: transparent;
+}
+.mapContainer{
+    /* height: calc(100vh + -130px); */
+    height: 80vh;
+    background-color: transparent;
+}
+.marker-image{
+    text-align: center;
+    background-color: transparent;	
+	position: relative;
+	cursor: pointer;	
+	perspective: 500px; 
+}
+.marker-image img {
+    height: 40px;
+}
+.marker-image .details {
+	width: 70%;
+	height: 80%;	
+	padding: 5% 8%;
+	position: absolute;
+	content: "";
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotateY(90deg);
+	transform-origin: 50%;
+	background: rgba(255,255,255,0.9);	
+	opacity: 0;
+	transition: all 0.4s ease-in;
+	
+}
+.marker-image:hover .details {
+	transform: translate(-50%, -50%) rotateY(0deg);
+	opacity: 1;
+}
+ /*.container{
+    position: relative;
+    background-color: white;
+    padding-bottom: 100%;
+    padding-top:0%;
+    margin-top: 0%;
+    background-color: white;
+}
+.block {
+  position: absolute;
+  background-color: #FFF0F5;
+} */
+/* .loc-name{
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+.loc-add{
+    font-size: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;  
+} */

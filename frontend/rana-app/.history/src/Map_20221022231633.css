@@ -1,0 +1,73 @@
+ *{
+    background-color: transparent;
+}
+.mapContainer{
+    height: calc(96vh + -130px);
+    /* height: 80vh; */
+    background-color: transparent;
+    margin: 8px 0px 8px 0px;
+}
+.marker-image{
+    text-align: center;
+    display: flex;
+    background-color: white;	
+	position: relative;
+	cursor: pointer;	
+	perspective: 800px; 
+    z-index: 0;
+}
+.marker-image img {
+    height: 55px;
+    z-index: 0;
+}
+.marker-image:hover img {
+    z-index: 0;
+}
+.theImg{
+    z-index: 0;
+    
+}
+.marker-image .details {
+	width: 120px;
+	height: auto;	
+	padding: 5px;
+	position: fixed;
+    align-items: center;
+	content: "";
+	top: 135px;
+	left: 100%;
+	transform: translate(-50%, -50%) rotateY(90deg);
+	transform-origin: 50%;
+	background: rgb(244, 176, 176);	
+	/* transition: all 0.4s ease-in; */
+    z-index: 1;
+}
+.marker-image:hover .details {
+    transform: translate(-50%);
+	transform: translate(-50%, -50%) rotateY(0deg);
+	opacity: 1;
+    z-index: 1;
+}
+
+.containerIcon{
+    position: relative;
+    padding-bottom: 100%;
+    padding-top:0%;
+    margin-top: 0%;
+    
+}
+.block {
+  position: absolute;
+  
+} 
+/* .loc-name{
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+.loc-add{
+    font-size: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;  
+} */

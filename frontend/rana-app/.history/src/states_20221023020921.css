@@ -1,0 +1,51 @@
+ .cardFull{
+  background-color: #fcbc9c;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+
+.countries{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    column-gap: 10px;
+    line-height: 50%;
+  }
+
+.cardBody{
+  height: 100%;
+
+  align-items: center;
+  justify-content: between;
+  line-height: normal;
+}
+.theCard{
+  margin: 10px;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* .cardBody > b{
+  margin:3px;
+  height: 10px;
+} */
+.form input{
+    padding: 15px;
+    font-size: 25px;
+    color: black;
+  }
+
+  .cardText{
+    margin: 15px 12px;
+    font-size: 16px;
+  }
+
+  .cardTitle{
+    margin: 20px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .cardImg{
+    opacity: 0.5;
+  }

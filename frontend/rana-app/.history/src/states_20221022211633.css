@@ -1,0 +1,13 @@
+.countries{
+    display: grid;
+    grid-template-columns: 370px 370px 370px;
+    column-gap: 10px;
+    line-height: 50%;
+    margin: auto;
+    font-family: Garamond, serif;
+  }
+.form input{
+    padding: 15px;
+    font-size: 25px;
+    color: black;
+  }

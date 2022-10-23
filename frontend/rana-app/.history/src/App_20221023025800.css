@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+* {
+  background-color: #fcbc9c;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+
+.startor{
+  margin-right: 10px;
+}
+h6{
+  text-decoration: none;
+  color:black;
+}
+.App {
+  height: 100vh;
+  background-color: #fcbc9c;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+.brdr {
+  border-bottom-style: solid;
+  border-bottom-color: rgb(160, 78, 78);
+}
+
+.logo-title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.jumbot {
+  height: calc(100vh + -160px);
+}
+
+/* .mapWords{
+  height: calc(100vh + -160px);
+} */
+
+.btnStart {
+  background-color: #f56c7a;
+  text-decoration: none;
+  font-weight: 450;
+  border: none;
+  border-radius: 0.6em;
+  font-size: 1.25em;
+  width: 6.5em;
+  height: 48px;
+}
+
+.btnStart:hover {
+  background-color: #eb4e5d;
+}
+
+
+
+
+
+
