@@ -10,9 +10,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function updateMessage() {
     const db = firebase.firestore();
 
+
+    let i = 0;
     for(let x in jsonPolicy) {
       db.collection("policies").doc(x).set({
-        policy: jsonPolicy[x]
+        policy: jsonPolicy[x],
+        abortionRate: abortionRates[i],
+        totalAbortion: totalAbortions[i],
+        percentageAborted: percentAborted[i],
+        noOfFacilities: facilityNumber[i]
     })
+      i = i+1;
     }
+    console.log("test");
   }
