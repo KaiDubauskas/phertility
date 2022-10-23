@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import CurrentLocation from './CurrentLocation';
 import axios from 'axios';
 import markerImage from './marker.png';
-import './Map.css'
+import './App.css'
 
 
 

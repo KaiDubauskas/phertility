@@ -95,7 +95,7 @@ function Map(){
   });
   
   return (
-    <div className="mapContainer">
+    <div>
     <div style={{ height: '100vh', width: '100%' }}>
     <CurrentLocation lat={lat} setLat={setLat} long={long} setLong={setLong}/>
     Showing Abortion Clinics within a 1,000 mile radius of your current location...

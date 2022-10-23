@@ -8,7 +8,6 @@
 
 .App {
   height: 100vh;
-  background-color: #fcbc9c;
 }
 
 .sticky-top {
@@ -45,9 +44,3 @@
 .btnStart:hover {
   background-color: #eb4e5d;
 }
-
-
-
-
-
-

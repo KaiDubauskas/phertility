@@ -68,7 +68,23 @@ function Map(){
   */
   const iconBase = "https://www.clipartmax.com/png/middle/297-2978379_doctor-symbol-clipart-hospital-hospital-location-icon.png"
 
+  return (
+    <div>
+    <div style={{ height: '100vh', width: '100%' }}>
+    <CurrentLocation lat={lat} setLat={setLat} long={long} setLong={setLong}/>
+    Showing Abortion Clinics within a 1,000 mile radius of your current location...
+    <GoogleMapReact
+      bootstrapURLKeys={{ key: "AIzaSyABwhex9_657N1iBjfVgYt3kA1zus0evx4" }}
+      center={{lat:lat, lng: long}}
+      zoom={defaultProps.zoom}
+    >
+      {allLocations}
+    </GoogleMapReact>
     
+  </div>
+  </div>
+
+  );
     const allLocations= allData.map((data, i) => {
       if(allData.length>0){
       return (
@@ -94,23 +110,7 @@ function Map(){
   }
   });
   
-  return (
-    <div className="mapContainer">
-    <div style={{ height: '100vh', width: '100%' }}>
-    <CurrentLocation lat={lat} setLat={setLat} long={long} setLong={setLong}/>
-    Showing Abortion Clinics within a 1,000 mile radius of your current location...
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: "AIzaSyABwhex9_657N1iBjfVgYt3kA1zus0evx4" }}
-      center={{lat:lat, lng: long}}
-      zoom={defaultProps.zoom}
-    >
-      {allLocations}
-    </GoogleMapReact>
-    
-  </div>
-  </div>
-
-  );
+  
 }
 
 export default Map

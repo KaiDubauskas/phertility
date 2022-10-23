@@ -1,4 +1,4 @@
-import './App.css';
+
 import Map from './Map';
 import { Routes, Route, Link, useRoutes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
