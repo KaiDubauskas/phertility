@@ -1,8 +1,6 @@
 # phertility
 
 https://phertility.netlify.app
-add this to the description of this project: After the recent overturn of Roe vs Wade, safeguarding women's health has become more important than ever. phertility is here to help
--also add tags to it
 
 ## Description
 Web-based application that uses a user's current location to connect them to local abortion clinics and provide live data on state policies 
