@@ -20,7 +20,7 @@ Web-based application that uses a user's current location to connect them to loc
 - React
 - Firebase
 - Node
-- Python
+- Python (Web Scraping)
 - Google Maps API
 - Google Places API
 - HTML
