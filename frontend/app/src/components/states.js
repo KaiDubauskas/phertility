@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {doc, setDoc, getDocs, collection, startAfter} from "firebase/firestore";
-import {db} from './database';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Link, useRoutes, useLocation } from 'react-router-dom';
+import { doc, setDoc, getDocs, collection, startAfter } from "firebase/firestore";
+import { db } from './database';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -9,43 +10,47 @@ import '../App.css';
 import '../states.css';
 
 
-function States(){
-        
-    const [searchState, setSearchState]=useState("");
-    const [latest, setLatest]=useState([]);
-    const [result, setResult]=useState([]);
-    useEffect(() => {
-        let newArr = [];
-        getDocs(collection(db, "policies")).then((states) => {
-        states.forEach((state) =>
-          newArr.push({
-            name: state.id,
-            policy: state.data().policy,
-            imgLink: state.data().imgLink,
-            numFacilities: state.data().noOfFacilities,
-            percentAborted: state.data().percentageAborted,
-            totalAbortion: state.data().totalAbortion
-          })
-        );
-        console.log(newArr);
-        setResult(newArr);
-      });
-    }, []);
-    const filterState= result.filter(item=> {
-        return searchState!== "" ? item.name.includes(searchState) : item;
-      });
+function States() {
+  const location = useLocation();
+  const locationFromMap = location.state;
+  const [searchState, setSearchState] = useState(locationFromMap ? locationFromMap : "");
+  const [latest, setLatest] = useState([]);
+  const [result, setResult] = useState([]);
+  useEffect(() => {
+    let newArr = [];
+    getDocs(collection(db, "policies")).then((states) => {
+      states.forEach((state) =>
+        newArr.push({
+          name: state.id,
+          policy: state.data().policy,
+          imgLink: state.data().imgLink,
+          numFacilities: state.data().noOfFacilities,
+          percentAborted: state.data().percentageAborted,
+          totalAbortion: state.data().totalAbortion
+        })
+      );
+      setResult(newArr);
+    });
+    console.log(locationFromMap);
+  }, []);
+  useEffect(() => {
+
+  })
+  const filterState = result.filter(item => {
+    return searchState !== "" ? item.name.includes(searchState) : item;
+  });
 
 
-    const states= filterState.map((data, i) => {
-        return (
-          
-        <div class="container-fluid cardFull justify-content-between align-items-center px-0">
-            <Card 
-            key={i}
-            bg="light"
-            text="dark"
-            className="text-center theCard ml-0"
-            >
+  const states = filterState.map((data, i) => {
+    return (
+
+      <div class="container-fluid cardFull justify-content-between align-items-center px-0">
+        <Card
+          key={i}
+          bg="light"
+          text="dark"
+          className="text-center theCard ml-0"
+        >
           {/* <Card.Img class="cardImg" src={data.imgLink} alt="Card Image" /> */}
           {/* <Card.ImgOverlay> */}
           <Card.Body class="container-fluid cardBody">
@@ -56,34 +61,35 @@ function States(){
             <Card.Text class="cardText"> Percentage of Pregnancies Aborted: <b>{data.percentAborted}</b> </Card.Text>
             <Card.Text class="cardText"> Total Abortions in Past Year: <b>{data.totalAbortion}</b> </Card.Text>
             {/* </div> */}
-            
+
           </Card.Body>
           {/* </Card.ImgOverlay> */}
-            </Card>
+        </Card>
+      </div>
+
+    );
+  });
+
+  return (
+    <div class="container-fluid ppl">
+      <div class="container px-3">
+        <Form className="form">
+          <Form.Group className="search" controlId="formGroupSearch">
+            <Form.Control
+              type="text"
+              placeholder="Search a State"
+              defaultValue={locationFromMap}
+              onChange={e => setSearchState(e.target.value)}
+            />
+          </Form.Group>
+        </Form>
+        <div className="countries justify-content-between align-items-center">
+          {states}
         </div>
-        
-      );
-    });
+      </div>
+    </div>
 
-return (
-<div class="container-fluid ppl">
-<div class="container px-3">
-<Form className="form">
-<Form.Group className="search" controlId="formGroupSearch">
-<Form.Control 
-type="text" 
-placeholder="Search a State" 
-onChange={e=> setSearchState(e.target.value)}
-/>
-</Form.Group>
-</Form>
-<div className="countries justify-content-between align-items-center">
-      {states};
-</div>
-</div>
-</div>
-
-)
+  )
 };
 
 export default States

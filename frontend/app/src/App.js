@@ -9,13 +9,13 @@ import States from "./components/states.js"
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <Routes>
-        <Route path="/" element={<Homepage/>}/>
-        <Route path="/map" element={<Map/>}/>
-        <Route path="/states" element={<States/>}/>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/states" element={<States />} state="" />
       </Routes>
-            
+
     </div>
   );
 }
