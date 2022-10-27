@@ -45,7 +45,7 @@ function Map() {
 
   function getData() {
     if (lat !== 39.8282 && long !== -98.5795) {
-      axios.get(`https://phertility-app.herokuapp.com/api/clinics/${lat}/${long}`)
+      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=Abortion%20Clinic&location=${lat}%2C${long}&radius=10000&key=AIzaSyA0n3haKfBhghSIKvFgf506RXJk8JwLnwc`)
         .then(responseArr => {
           setallData(responseArr.data.results);
         })
