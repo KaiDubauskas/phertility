@@ -5,16 +5,16 @@ import { Routes, Route, Link, useRoutes } from 'react-router-dom';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PropaneRounded } from "@mui/icons-material";
+import '../Map.css';
 
 const MapSidebar = props => {
 
     return (
         <>
             <h3 class="mb-3">{props.name.innerHTML}</h3>
-            <h4 class="my-3">Address: {props.address.innerHTML}</h4>
+            <h4 class="my-3">Address: {props.address}</h4>
             <h5>Rating: {props.rating}/5</h5>
-            <h5>This clinic is in {props.state}. Click {' '}
-
+            <h5 className="mt-3">This clinic is in {props.state}. Click {' '}
                 <Link to={{
                     pathname: `/states`,
                 }} state={props.state}

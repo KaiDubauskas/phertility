@@ -20,12 +20,11 @@ function Map() {
   const [clinicAdd, setClinicAdd] = useState("");
   const [clinicRating, setClinicRating] = useState(0);
   const [clinicState, setClinicState] = useState("");
+  const [clinicLong, setClinicLong] = useState(0);
+  const [clinicLat, setClinicLat] = useState(0);
+  const [distToClinic, setDistToClinic] = useState(0);
+  const [canChangeSidebar, setCanChangeSidebar] = useState(true);
 
-  // let [boolHide, setBoolHide] = useState(false);
-  // let [bool2Hide, setBool2Hide] = useState(false);
-  useEffect(() => {
-    console.log(allData);
-  })
   const defaultProps = {
     center: {
       lat: 39.8282,
@@ -37,10 +36,17 @@ function Map() {
   useEffect(() => {
     setLat(lat);
   }, [lat])
+
   useEffect(() => {
     setLong(long);
     getData();
   }, [long])
+
+  useEffect(() => {
+    setDistToClinic(calcDistance1(lat, long, clinicLat, clinicLong));
+    //console.log(clinicLat + " " + clinicLong + " " + calcDistance1(lat, long, clinicLat, clinicLong) + " " + clinicRating);
+
+  }, [clinicLat])
 
 
   function getData() {
@@ -57,14 +63,91 @@ function Map() {
 
   function handleMouseEnter(e) {
     let parent = e.target.parentElement;
-    let clinicNameTmp = parent.querySelector(".loc-name");
-    let clinicAddressTmp = parent.querySelector(".loc-add");
-    setClinicName(clinicNameTmp);
-    setClinicAdd(clinicAddressTmp);
-    setClinicRating(parent.getAttribute('rating'));
+    for (let i = 0; i < allData.length; ++i) {
+      if (allData[i].formatted_address == parent.getAttribute('address')) {
+        console.log(i)
+        const tmp = allData[allData.length - 1];
+        allData[allData.length - 1] = allData[i];
+        allData[i] = tmp;
+        break;
+      }
+    }
+    if (canChangeSidebar) {
+      let clinicNameTmp = parent.querySelector(".loc-name");
+      setClinicName(clinicNameTmp);
+      setClinicRating(parent.getAttribute('rating'));
+      setClinicAdd(parent.getAttribute('address'));
+      //console.log(parent.getAttribute('address'));
+      //console.log(allLocations);
 
-    const lastWord = parent.getAttribute('state').split(' ');
-    setClinicState(lastWord.pop());
+      setClinicLat(parent.getAttribute('lat'));
+      setClinicLong(parent.getAttribute('long'));
+      //parent.style.zindex = 1;
+      //console.log(clinicLat);
+      //console.log(clinicLong);
+      //setDistToClinic(calcDistance(lat, long, clinicLat, clinicLong));
+
+      //console.log(calcDistance(lat, long, clinicLat, clinicLong));
+      // console.log(distToClinic);
+
+      const lastWord = parent.getAttribute('state').split(' ');
+      setClinicState(lastWord[lastWord.length - 1]);
+      if (lastWord[lastWord.length - 1] == "Carolina" || clinicState == "Dakota" || clinicState == "York"
+        || clinicState == "Hampshire" || clinicState == "Island" || clinicState == "Mexico") {
+        let tmp = lastWord[lastWord.length - 2] + " " + lastWord[lastWord.length - 1];
+        setClinicState(tmp);
+      }
+
+    }
+  }
+
+
+  function calcDistance(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+      ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    return d;
+  }
+
+  function deg2rad(deg) {
+    return deg * (Math.PI / 180)
+  }
+
+  function handleClick(e) {
+    handleMouseEnter(e);
+    setCanChangeSidebar(!canChangeSidebar);
+  }
+
+
+  function calcDistance1(lat1, lon1, lat2, lon2) {
+    var R = 6371; // km (change this constant to get miles)
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    if (d > 1) return Math.round(d);
+    else if (d <= 1) return Math.round(d * 1000);
+    return d;
+  }
+
+  function bring_to_front(target_elem) {
+    const all_z = [];
+    document.querySelectorAll("*").forEach(function (elem) {
+      all_z.push(elem.style.zIndex)
+    })
+    const max_index = Math.max.apply(null, all_z.map((x) => Number(x)));
+    const new_max_index = max_index + 1;
+    target_elem.style.zIndex = new_max_index;
   }
 
   /*
@@ -94,7 +177,7 @@ function Map() {
   const iconBase = "https://www.clipartmax.com/png/middle/297-2978379_doctor-symbol-clipart-hospital-hospital-location-icon.png"
 
 
-  const allLocations = allData.map((data, i) => {
+  let allLocations = allData.map((data, i) => {
     if (allData.length > 0) {
       return (
         <div
@@ -102,19 +185,27 @@ function Map() {
           lat={data.geometry.location.lat}
           lng={data.geometry.location.lng}
         >
-          <div class="marker-image d-flex"
+          <div className="marker-image d-flex"
             state={data.plus_code.compound_code}
             rating={data.rating}
+            address={data.formatted_address}
+            lat={data.geometry.location.lat}
+            long={data.geometry.location.lng}
           >
             <div class="details d-flex">
               <div class="containerIcon">
                 <div class="block my-auto">
                   <p className="loc-name"> {data.name} </p>
-                  <p class="loc-add"> {data.formatted_address}</p>
+                  {
+                    canChangeSidebar ?
+                      <p class="loc-add"> Click to lock info to sidebar</p> :
+                      <p class="loc-add"> Click to unlock info on sidebar</p>
+                  }
+
                 </div>
               </div>
             </div>
-            <img src={markerImage} class="theImg" onMouseEnter={handleMouseEnter} />
+            <img src={markerImage} class="theImg" onMouseEnter={handleMouseEnter} onClick={handleClick} />
 
           </div>
         </div>
@@ -140,12 +231,22 @@ function Map() {
         <div class="col-md-4 px-4">
           <div class="container-fluid">
             {clinicName ?
-              <MapSidebar
-                name={clinicName}
-                address={clinicAdd}
-                rating={clinicRating}
-                state={clinicState}
-              /> :
+              <div>
+                {
+                  canChangeSidebar ?
+                    <></> :
+                    <div className="justify-content-center my-1">
+                      <div class="lockOrUnlocked" />
+                    </div>
+                }
+                <MapSidebar
+                  name={clinicName}
+                  address={clinicAdd}
+                  rating={clinicRating}
+                  state={clinicState}
+                />
+              </div>
+              :
               <div id="welcomeSideBar">
                 <h3 class="mb-2">welcome</h3>
                 <CurrentLocation lat={lat} setLat={setLat} long={long} setLong={setLong} />
