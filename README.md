@@ -8,6 +8,8 @@ Web-based application that uses a user's current location to connect them to loc
 ## Demonstration
 ![](demonstration.gif) 
 
+*View Backend Code [here](https://github.com/ranadubauskas/phertility-backend)
+
 ## Features
 - Gets user's current location
 - Displays abortion clinics on map within a 1000 mile radius
@@ -33,7 +35,6 @@ Web-based application that uses a user's current location to connect them to loc
 - Give users a route & directions to the nearby clinics
 - Implement form to send user updates for when abortion policies change 
 
-*View Backend Code [here](https://github.com/ranadubauskas/phertility-backend)
 
 ## Contributors
   - **Rana Dubauskas** - *Developed the app* -
