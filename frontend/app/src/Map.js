@@ -24,6 +24,7 @@ function Map() {
   const [clinicLat, setClinicLat] = useState(0);
   const [distToClinic, setDistToClinic] = useState(0);
   const [canChangeSidebar, setCanChangeSidebar] = useState(true);
+  const [sideBarLocked, setSideBarLocked] = useState(false);
 
   const defaultProps = {
     center: {
@@ -65,30 +66,19 @@ function Map() {
     let parent = e.target.parentElement;
     for (let i = 0; i < allData.length; ++i) {
       if (allData[i].formatted_address == parent.getAttribute('address')) {
-        console.log(i)
         const tmp = allData[allData.length - 1];
         allData[allData.length - 1] = allData[i];
         allData[i] = tmp;
         break;
       }
     }
+    setSideBarLocked(!sideBarLocked);
     if (canChangeSidebar) {
-      let clinicNameTmp = parent.querySelector(".loc-name");
-      setClinicName(clinicNameTmp);
+      setClinicName(parent.getAttribute('name'));
       setClinicRating(parent.getAttribute('rating'));
       setClinicAdd(parent.getAttribute('address'));
-      //console.log(parent.getAttribute('address'));
-      //console.log(allLocations);
-
       setClinicLat(parent.getAttribute('lat'));
       setClinicLong(parent.getAttribute('long'));
-      //parent.style.zindex = 1;
-      //console.log(clinicLat);
-      //console.log(clinicLong);
-      //setDistToClinic(calcDistance(lat, long, clinicLat, clinicLong));
-
-      //console.log(calcDistance(lat, long, clinicLat, clinicLong));
-      // console.log(distToClinic);
 
       const lastWord = parent.getAttribute('state').split(' ');
       setClinicState(lastWord[lastWord.length - 1]);
@@ -191,6 +181,7 @@ function Map() {
             address={data.formatted_address}
             lat={data.geometry.location.lat}
             long={data.geometry.location.lng}
+            name={data.name}
           >
             <div class="details d-flex">
               <div class="containerIcon">
@@ -244,6 +235,7 @@ function Map() {
                   address={clinicAdd}
                   rating={clinicRating}
                   state={clinicState}
+                  canChange={sideBarLocked}
                 />
               </div>
               :

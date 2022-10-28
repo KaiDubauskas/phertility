@@ -6,11 +6,12 @@
   font-weight: 500;
 }
 
-.startor{
+
+.startor {
   margin-right: 10px;
 }
 
-.logoface{
+.logoface {
   height: 85px;
 }
 
@@ -22,7 +23,8 @@
 .sticky-top {
   position: sticky;
   top: 0;
-  z-index: 1020;
+  background-color: #fcbc9c;
+  z-index: 0;
 }
 
 .brdr {
@@ -54,7 +56,7 @@
   height: 48px;
 }
 
-.btnStar{
+.btnStar {
   text-decoration: none;
   border: none;
 }
@@ -64,12 +66,6 @@
   background-color: #eb4e5d;
 }
 
-.lop{
+.lop {
   margin-right: 4rem;
 }
-
-
-
-
-
-

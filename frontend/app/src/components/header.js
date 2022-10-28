@@ -12,33 +12,33 @@ const Header = () => {
                 <div class="container">
                     <div class="container-fluid d-inline-flex flex-column flex-md-row align-items-center justify-content-between pt-0 pb-2 brdr">
                         <div class="col-5 logo-title">
-                        <Link to={{
-                        pathname: `/`,
+                            <Link to={{
+                                pathname: `/`,
 
-                    }}>
-                        <img src={Logo} alt="" class="logoface m-0" />
-                    </Link>
-                        {/* <div class="col-5 logo-title">
+                            }}>
+                                <img src={Logo} alt="" class="logoface m-0" />
+                            </Link>
+                            {/* <div class="col-5 logo-title">
                             Phertility
                         </div> */}
                         </div>
                         {/* <div class="container-fluid"> */}
                         {/* <div class="container-fluid col-7 text-end d-inline-flex flex-column"> */}
-                            <nav class="d-inline-flex">
+                        <nav class="d-inline-flex">
                             <Link to={{
                                 pathname: `/states`,
 
                             }}>
-                             <button type="button" class="btnStar lop">Policies By State</button>
+                                <button type="button" class="btnStar lop">Policies By State</button>
                             </Link>
 
                             <Link to={{
-                        pathname: `/map`,
+                                pathname: `/map`,
 
-                    }}>
-                            <button type="button" class="btnStar">View Map</button>
+                            }}>
+                                <button type="button" class="btnStar">View Map</button>
                             </Link>
-                            </nav>
+                        </nav>
                         {/* </div> */}
                         {/* </div> */}
                     </div>

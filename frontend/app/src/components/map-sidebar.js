@@ -11,13 +11,14 @@ const MapSidebar = props => {
 
     return (
         <>
-            <h3 class="mb-3">{props.name.innerHTML}</h3>
+            <h3 class="mb-3">{props.name}</h3>
             <h4 class="my-3">Address: {props.address}</h4>
             <h5>Rating: {props.rating}/5</h5>
             <h5 className="mt-3">This clinic is in {props.state}. Click {' '}
                 <Link to={{
                     pathname: `/states`,
                 }} state={props.state}
+                    style={{ textDecoration: 'none' }}
                 >
                     here
                 </Link>{' '}
