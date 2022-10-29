@@ -13,7 +13,7 @@ Web-based application that uses a user's current location to connect them to loc
 ## Features
 - Gets user's current location
 - Displays abortion clinics on map within a 1000 mile radius
-- Custom Google Maps markers that display location name and address of clinic on hover
+- Custom Google Maps markers that display location name, address, and rating of clinic on hover
 - Allows user to lock location info on screen by clicking the maps marker
 - Direct users to live state policy page from the location of abortion clinc clicked
 - Search feature that filters states
