@@ -21,8 +21,13 @@
 
  .marker-image img {
      position: absolute;
-     height: 55px;
+     height: 50px;
 
+ }
+
+ .HomeStar {
+     height: 30px;
+     position: absolute;
  }
 
  /* .marker-image:hover img {} */
@@ -41,8 +46,15 @@
      left: 100%;
      transform: translate(-50%, -50%) rotateY(90deg);
      transform-origin: 50%;
-     background: rgb(244, 176, 176);
      transition: all 0.07s ease-in;
+ }
+
+ .marker-image .clinics {
+     background: rgb(244, 176, 176);
+ }
+
+ .marker-image .contraceptives {
+     background: #78c3ef;
  }
 
  .marker-image:hover .details {
