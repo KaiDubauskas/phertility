@@ -4,8 +4,7 @@ import axios from 'axios';
 import markerImage from './marker.png';
 import contraImage from './contra-marker.png';
 import MapSidebar from "./components/map-sidebar.js";
-import HomeStar from './home-star.png';
-import SoloStar from './solo-star.png'
+import StarOutline from './starwoutline.png';
 import CurrentLocation from "./CurrentLocation";
 import './Map.css';
 
@@ -28,6 +27,7 @@ function Map() {
   const [clinicLat, setClinicLat] = useState(0);
   const [distToClinic, setDistToClinic] = useState(0);
   const [canChangeSidebar, setCanChangeSidebar] = useState(true);
+  const [hoverOnClinic, setHoverOnClinic] = useState(true);
   const [sideBarLocked, setSideBarLocked] = useState(false);
 
   const defaultProps = {
@@ -84,14 +84,29 @@ function Map() {
 
   function handleMouseEnter(e) {
     let parent = e.target.parentElement;
-    for (let i = 0; i < allData.length; ++i) {
-      if (allData[i].formatted_address == parent.getAttribute('address')) {
-        const tmp = allData[allData.length - 1];
-        allData[allData.length - 1] = allData[i];
-        allData[i] = tmp;
-        break;
+    if (parent.querySelector('.contraceptives')) {
+      setHoverOnClinic(false);
+      for (let i = 0; i < contraData.length; ++i) {
+        if (contraData[i].formatted_address == parent.getAttribute('address')) {
+          const tmp = contraData[contraData.length - 1];
+          contraData[allData.length - 1] = contraData[i];
+          contraData[i] = tmp;
+          break;
+        }
       }
     }
+    else {
+      setHoverOnClinic(true);
+      for (let i = 0; i < allData.length; ++i) {
+        if (allData[i].formatted_address == parent.getAttribute('address')) {
+          const tmp = allData[allData.length - 1];
+          allData[allData.length - 1] = allData[i];
+          allData[i] = tmp;
+          break;
+        }
+      }
+    }
+
     setSideBarLocked(!sideBarLocked);
     if (canChangeSidebar) {
       setClinicName(parent.getAttribute('name'));
@@ -268,13 +283,17 @@ function Map() {
             center={{ lat: lat, lng: long }}
             zoom={defaultProps.zoom}
           >
+
             {allLocations}
             {allContraLocations}
-            {/* {userLocation} */}
+
+
+
+
             < div
               lat={lat}
               lng={long} >
-              <img src={SoloStar} class="HomeStar" />
+              <img src={StarOutline} class="HomeStar" />
             </ div>
           </GoogleMapReact>
         </div>
