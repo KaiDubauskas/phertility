@@ -304,9 +304,8 @@ function Map() {
 
 
 
-            {
-              allLocations.append(allContraLocations)
-            }
+            {allContraLocations}
+            {allLocations}
 
 
 
