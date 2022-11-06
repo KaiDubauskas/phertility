@@ -7,6 +7,7 @@ import MapSidebar from "./components/map-sidebar.js";
 import StarOutline from './starwoutline.png';
 import CurrentLocation from "./CurrentLocation";
 import './Map.css';
+import { hover } from "@testing-library/user-event/dist/hover";
 
 
 
@@ -122,6 +123,17 @@ function Map() {
         let tmp = lastWord[lastWord.length - 2] + " " + lastWord[lastWord.length - 1];
         setClinicState(tmp);
       }
+
+    }
+  }
+
+  function DisplayIconsOnMap() {
+    if (hoverOnClinic) {
+      return allContraLocations;
+    } else {
+      console.log("contra");
+      return allLocations;
+      //{allContraLocations}
 
     }
   }
@@ -284,8 +296,17 @@ function Map() {
             zoom={defaultProps.zoom}
           >
 
-            {allLocations}
-            {allContraLocations}
+            {/* {
+              hoverOnClinic ?
+                console.log("clinic" + allLocations) :
+                console.log("contra" + allContraLocations)
+            } */}
+
+
+
+            {
+              allLocations.append(allContraLocations)
+            }
 
 
 
