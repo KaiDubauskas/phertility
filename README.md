@@ -6,7 +6,7 @@ https://phertility.netlify.app
 Web-based application that uses a user's current location to connect them to local abortion clinics and provide live data on state policies 
 
 ## Demonstration
-![](demonstration3.gif) 
+![](demonstration.gif) 
 
 *View Backend Code [here](https://github.com/ranadubauskas/phertility-backend)
 
