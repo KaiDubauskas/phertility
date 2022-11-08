@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import GoogleMapReact from 'google-map-react';
+import google from 'google-map-react';
 import axios from 'axios';
-import markerImage from './marker.png';
-import contraImage from './contra-marker.png';
-import MapSidebar from "./components/map-sidebar.js";
-import StarOutline from './starwoutline.png';
-import CurrentLocation from "./CurrentLocation";
-import './Map.css';
-import { hover } from "@testing-library/user-event/dist/hover";
+import markerImage from '../Images/marker.png';
+import contraImage from '../Images/contra-marker.png';
+import MapSidebar from "./map-sidebar.js";
+import StarOutline from '../Images/starwoutline.png';
+import CurrentLocation from "./CurrentLocation.js";
+import Legend from "./legend.js";
+import '../Map.css';
+import { Visibility } from "@mui/icons-material";
+
 
 
 
@@ -18,6 +21,7 @@ function Map() {
   let [centerCoords, setCenterCoords] = useState([lat, long]);
   let [allData, setallData] = useState([]);
   const [contraData, setContraData] = useState([]);
+  const [combinedData, setCombinedData] = useState([]);
   let [city, setCity] = useState('');
   let [cityNames, setCityNames] = useState([]);
   const [clinicName, setClinicName] = useState("");
@@ -285,37 +289,32 @@ function Map() {
   });
 
 
+  function onGoogleReady(map) {
+    map.map.controls[map.maps.ControlPosition.TOP_CENTER].push(document.getElementById('legend'));
+  }
 
   return (
     <div className="container">
       <div className="row flex-md-row-reverse align-items-center py-3">
         <div class="col-md-8 mt-8 mt-md-0 mapContainer ">
+          <Legend id="legend" />
           <GoogleMapReact
+            google={google}
+            onGoogleApiLoaded={(map) => onGoogleReady(map)}
             bootstrapURLKeys={{ key: "AIzaSyABwhex9_657N1iBjfVgYt3kA1zus0evx4" }}
+            yesIWantToUseGoogleMapApiInternals
             center={{ lat: lat, lng: long }}
             zoom={defaultProps.zoom}
           >
-
-            {/* {
-              hoverOnClinic ?
-                console.log("clinic" + allLocations) :
-                console.log("contra" + allContraLocations)
-            } */}
-
-
-
             {allContraLocations}
             {allLocations}
-
-
-
-
             < div
               lat={lat}
               lng={long} >
               <img src={StarOutline} class="HomeStar" />
             </ div>
           </GoogleMapReact>
+
         </div>
 
         <div class="col-md-4 px-4">
@@ -348,8 +347,8 @@ function Map() {
           </div>
         </div>
 
-      </div>
-    </div>
+      </div >
+    </div >
 
   );
 }

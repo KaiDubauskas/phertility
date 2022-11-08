@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import GoogleMapReact from 'google-map-react';
-import CurrentLocation from '../CurrentLocation.js';
+import CurrentLocation from './CurrentLocation.js';
 import { Routes, Route, Link, useRoutes } from 'react-router-dom';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";

@@ -1,5 +1,5 @@
 import './App.css';
-import Map from './Map';
+import Map from "./components/Map.js";
 import { Routes, Route, Link, useRoutes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./components/homepage.js";
